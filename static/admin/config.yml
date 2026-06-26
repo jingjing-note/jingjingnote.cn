@@ -1,0 +1,93 @@
+backend:
+  name: github
+  repo: jingjing-note/jingjingnote.cn
+  branch: main
+  base_url: https://api.github.com
+
+media_folder: "static/images/uploads"
+public_folder: "/images/uploads"
+
+locale: "zh_Hans"
+
+slug:
+  encoding: "unicode"
+  clean_accents: false
+
+collections:
+  - name: "footprint"
+    label: "📌 足迹角"
+    folder: "content/posts/足迹角"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "标题", name: "title", widget: "string" }
+      - { label: "发布日期", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "草稿", name: "draft", widget: "boolean", default: false }
+      - { label: "摘要", name: "description", widget: "string", required: false }
+      - { label: "分类", name: "categories", widget: "hidden", default: ["足迹角"] }
+      - { label: "标签", name: "tags", widget: "list", allow_add: true, field: { label: "标签", name: "tag", widget: "string" } }
+      - { label: "正文", name: "body", widget: "markdown" }
+
+  - name: "reading"
+    label: "📖 阅读角"
+    folder: "content/posts/阅读角"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "标题", name: "title", widget: "string" }
+      - { label: "发布日期", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "草稿", name: "draft", widget: "boolean", default: false }
+      - { label: "摘要", name: "description", widget: "string", required: false }
+      - { label: "分类", name: "categories", widget: "hidden", default: ["阅读角"] }
+      - { label: "标签", name: "tags", widget: "list", allow_add: true, field: { label: "标签", name: "tag", widget: "string" } }
+      - { label: "正文", name: "body", widget: "markdown" }
+
+  - name: "ai-lab"
+    label: "🤖 AI发现室"
+    folder: "content/posts/ai发现室"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "标题", name: "title", widget: "string" }
+      - { label: "发布日期", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "草稿", name: "draft", widget: "boolean", default: false }
+      - { label: "摘要", name: "description", widget: "string", required: false }
+      - { label: "分类", name: "categories", widget: "hidden", default: ["ai发现室"] }
+      - { label: "标签", name: "tags", widget: "list", allow_add: true, field: { label: "标签", name: "tag", widget: "string" } }
+      - { label: "正文", name: "body", widget: "markdown" }
+
+  - name: "life"
+    label: "✍️ 生活手记"
+    folder: "content/posts/生活手记"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "标题", name: "title", widget: "string" }
+      - { label: "发布日期", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "草稿", name: "draft", widget: "boolean", default: false }
+      - { label: "摘要", name: "description", widget: "string", required: false }
+      - { label: "分类", name: "categories", widget: "hidden", default: ["生活手记"] }
+      - { label: "标签", name: "tags", widget: "list", allow_add: true, field: { label: "标签", name: "tag", widget: "string" } }
+      - { label: "正文", name: "body", widget: "markdown" }
+
+  - name: "pages"
+    label: "📄 页面"
+    files:
+      - label: "首页配置"
+        name: "home"
+        file: "content/_index.md"
+        fields:
+          - { label: "标题", name: "title", widget: "string" }
+          - { label: "正文", name: "body", widget: "markdown", required: false }
