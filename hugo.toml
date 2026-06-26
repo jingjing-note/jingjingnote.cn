@@ -1,0 +1,109 @@
+baseURL = "https://jingjingnote.cn/"
+languageCode = "zh-cn"
+defaultContentLanguage = "zh"
+title = "精神殿堂：体验人间百味图书馆"
+theme = "PaperMod"
+[pagination]
+  pagerSize = 10
+
+enableRobotsTXT = true
+enableGitInfo = true
+buildDrafts = false
+
+[params]
+  defaultTheme = "auto"
+  ShowReadingTime = true
+  ShowShareButtons = false
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowRssButtonInSectionTermList = true
+  UseHugoToc = true
+  description = "体验人间百味，记录足迹、阅读、AI洞察与生活手记"
+  author = "晶晶"
+  DateFormat = "2006-01-02"
+
+  [params.homeInfoParams]
+    Title = "精神殿堂：体验人间百味图书馆 👋"
+    Content = """
+这里是记录足迹、阅读、思考和生活的地方。
+
+📌 **足迹角** — 用脚步丈量世界，用文字留住风景  
+📖 **阅读角** — 书里书外，都是人间  
+🤖 **AI发现室** — 用AI串联体验与思考的新视角  
+✍️ **工作/生活手记** — 真实落地，印证所思
+"""
+
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/jingjing-note"
+
+[params.editPost]
+  URL = "https://github.com/jingjing-note/jingjingnote.cn/tree/main/content"
+  Text = "编辑此页"
+  appendFilePath = true
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[menus]
+  [[menus.main]]
+    identifier = "footprint"
+    name = "足迹角"
+    url = "/categories/足迹角/"
+    weight = 10
+  [[menus.main]]
+    identifier = "reading"
+    name = "阅读角"
+    url = "/categories/阅读角/"
+    weight = 20
+  [[menus.main]]
+    identifier = "ai-lab"
+    name = "AI发现室"
+    url = "/categories/ai发现室/"
+    weight = 30
+  [[menus.main]]
+    identifier = "life"
+    name = "生活手记"
+    url = "/categories/生活手记/"
+    weight = 40
+  [[menus.main]]
+    identifier = "archives"
+    name = "归档"
+    url = "/archives/"
+    weight = 50
+  [[menus.main]]
+    identifier = "search"
+    name = "搜索"
+    url = "/search/"
+    weight = 60
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  series = "series"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    style = "dracula"
+    lineNos = false
+    codeFences = true
+    guessSyntax = true
+
+[privacy]
+  [privacy.vimeo]
+    disabled = false
+    simple = true
+  [privacy.x]
+    disabled = false
+    enableDNT = true
+    simple = true
+  [privacy.instagram]
+    disabled = false
+    simple = true
+  [privacy.youtube]
+    disabled = false
+    privacyEnhanced = true
