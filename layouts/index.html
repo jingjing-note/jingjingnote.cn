@@ -1,0 +1,243 @@
+{{- define "main" }}
+{{- $isMafengwoStyle := .Site.Params.mafengwoStyle | default true }}
+
+{{- if $isMafengwoStyle }}
+<style>
+/* 马蜂窝风格首页 */
+.hero-banner {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    overflow: hidden;
+    margin-top: -60px;
+}
+.hero-banner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url('{{ .Site.Params.heroImage | default "/images/hero-default.jpg" }}') center/cover;
+    opacity: 0.3;
+}
+.hero-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+.hero-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+.hero-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+/* 分类导航 */
+.category-nav {
+    background: white;
+    padding: 15px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 60px;
+    z-index: 100;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+.category-nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.category-tab {
+    display: inline-block;
+    padding: 8px 24px;
+    margin: 0 5px;
+    border-radius: 20px;
+    color: #666;
+    text-decoration: none;
+    transition: all 0.3s;
+    font-size: 14px;
+}
+.category-tab:hover, .category-tab.active {
+    background: #ff6b35;
+    color: white;
+}
+
+/* 文章卡片区 */
+.articles-section {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+.section-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding-left: 12px;
+    border-left: 4px solid #ff6b35;
+}
+.articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+.article-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.article-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+.card-cover {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    background: #f0f0f0;
+}
+.card-cover-placeholder {
+    width: 100%;
+    height: 180px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 3rem;
+}
+.card-content {
+    padding: 16px;
+}
+.card-category {
+    display: inline-block;
+    padding: 3px 10px;
+    background: #fff3e0;
+    color: #ff6b35;
+    border-radius: 12px;
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.card-title a {
+    color: inherit;
+    text-decoration: none;
+}
+.card-title a:hover {
+    color: #ff6b35;
+}
+.card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #999;
+    font-size: 12px;
+}
+.card-excerpt {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+    .hero-banner { height: 250px; }
+    .hero-title { font-size: 1.8rem; }
+    .articles-grid { grid-template-columns: 1fr; }
+    .category-nav { top: 50px; }
+}
+</style>
+
+<!-- 大图横幅 -->
+<div class="hero-banner">
+    <div class="hero-content">
+        <h1 class="hero-title">{{ .Site.Title }}</h1>
+        <p class="hero-subtitle">{{ .Site.Params.description | default "记录足迹、阅读、思考和生活的地方" }}</p>
+    </div>
+</div>
+
+<!-- 分类导航 -->
+<nav class="category-nav">
+    <div class="category-nav-inner">
+        <a href="#all" class="category-tab active">全部</a>
+        <a href="{{ "categories/足迹角" | relURL }}" class="category-tab">📌 足迹角</a>
+        <a href="{{ "categories/阅读角" | relURL }}" class="category-tab">📖 阅读角</a>
+        <a href="{{ "categories/ai发现室" | relURL }}" class="category-tab">🤖 AI发现室</a>
+        <a href="{{ "categories/生活手记" | relURL }}" class="category-tab">✍️ 生活手记</a>
+    </div>
+</nav>
+
+<!-- 文章列表 -->
+<section class="articles-section">
+    <h2 class="section-title">最新文章</h2>
+    <div class="articles-grid">
+        {{- $pages := where .Site.RegularPages "Section" "posts" }}
+        {{- range $pages }}
+        <article class="article-card">
+            {{- if .Params.cover }}
+            <img src="{{ .Params.cover | relURL }}" alt="{{ .Title }}" class="card-cover">
+            {{- else if .Params.categories }}
+            <div class="card-cover-placeholder">
+                {{- $cat := index .Params.categories 0 }}
+                {{- if eq $cat "足迹角" }}📌
+                {{- else if eq $cat "阅读角" }}📖
+                {{- else if eq $cat "AI发现室" }}🤖
+                {{- else }}✍️
+                {{- end }}
+            </div>
+            {{- else }}
+            <div class="card-cover-placeholder">📝</div>
+            {{- end }}
+            <div class="card-content">
+                {{- with .Params.categories }}
+                <span class="card-category">{{ index . 0 }}</span>
+                {{- end }}
+                <h3 class="card-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+                {{- if .Description }}
+                <p class="card-excerpt">{{ .Description }}</p>
+                {{- else }}
+                <p class="card-excerpt">{{ .Summary | plainify | truncate 80 }}</p>
+                {{- end }}
+                <div class="card-meta">
+                    <span>{{ .Date.Format "2006-01-02" }}</span>
+                    <span>{{ .ReadingTime }} 分钟</span>
+                </div>
+            </div>
+        </article>
+        {{- end }}
+    </div>
+</section>
+
+{{- else }}
+{{-/* 默认 PaperMod 首页 */}}
+{{- partial "home_info.html" . }}
+{{- end }}
+{{- end }}
