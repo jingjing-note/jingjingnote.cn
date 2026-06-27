@@ -3,6 +3,9 @@ backend:
   repo: jingjing-note/jingjingnote.cn
   branch: main
   base_url: https://api.github.com
+  auth_endpoint: /auth/github/callback
+  app_id: Ov23lirKm0Z3IsLkFedA
+  auth_type: pkce
 
 media_folder: "static/images/uploads"
 public_folder: "/images/uploads"
@@ -81,13 +84,3 @@ collections:
       - { label: "分类", name: "categories", widget: "hidden", default: ["生活手记"] }
       - { label: "标签", name: "tags", widget: "list", allow_add: true, field: { label: "标签", name: "tag", widget: "string" } }
       - { label: "正文", name: "body", widget: "markdown" }
-
-  - name: "pages"
-    label: "📄 页面"
-    files:
-      - label: "首页配置"
-        name: "home"
-        file: "content/_index.md"
-        fields:
-          - { label: "标题", name: "title", widget: "string" }
-          - { label: "正文", name: "body", widget: "markdown", required: false }
